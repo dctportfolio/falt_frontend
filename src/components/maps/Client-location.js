@@ -9,6 +9,7 @@ import { MinimapControl } from './Minimap'
 
 const ClientsLocation = (props) => {
     const { clients } = props
+    console.log(clients, 'sss')
     const markerIcon = new Icon({
         iconUrl: clientMarker,
         iconSize: [40, 40],

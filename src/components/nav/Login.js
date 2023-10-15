@@ -37,7 +37,7 @@ const Login=(props)=>{
                     let token = response.data.token
                     localStorage.setItem('token', token)                
                 } else {
-                    Alert(response.data,'info','pricing')
+                    Alert(response.data.error ? response.data.error : response.data,'info', response.data.error ? 'login' : 'pricing')
                 }
             }
             loader()
@@ -80,7 +80,7 @@ const Login=(props)=>{
                         <a href="/forgot-password">Forgot Password?</a>
                     </div>
                     
-                    <button onClick={handleSubmit} >Get Otp</button>
+                    <button onClick={handleSubmit} className="btn btn-outline-primary" >Get Otp</button>
 
                     <div className="register-link">
                         <p>Don't have an account? <a href="/free-trail">Register</a></p>

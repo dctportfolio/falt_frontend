@@ -86,7 +86,7 @@ const EmployeeData = () => {
                     show={employeeEditShow}
                     onHide={() => setEmployeeEditShow(false)}
                 />
-                <div className="container-fluid ms-auto mt-2">
+                <div className="container-fluid mt-2">
                 <Form>
                     <Row className="justify-content-end">
                         <Col xs={11}>

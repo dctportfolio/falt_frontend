@@ -72,6 +72,8 @@ const FreeTrail = () => {
             if(response.data.hasOwnProperty("user")) {
               alert('successfully registered with us')
               navigate("/login")  
+            } else {
+              alert(response.data.error ? response.data.error : "something went wrong")
             }
           } catch(e) {
             alert(e.message)
@@ -82,7 +84,7 @@ const FreeTrail = () => {
 
     return (
         <div className='d-flex justify-content-center'>
-          <Container className="border border-1 border-primary rounded-2 mt-3 bg-gradient-dark">
+          <Container fluid className="border border-1 border-primary rounded-2 mt-3 bg-gradient-dark">
           <h3 className="text-center text-success text-decoration-underline mt-3 ">Register with us</h3><br />
           <Form onSubmit={handleSubmit}>
             <Row>

@@ -16,7 +16,7 @@ const TrackClient = () => {
 
   const employeeLocationsA = data.employees.filter(emp => emp.role === "fieldAgent" && emp.location?.length > 0)
   const employeeLocationsM = data.employees.filter(emp => emp.role === "fieldAgent" && emp.reportTo === tokenData.id)
-    
+    console.log(clientLocationsA, 'ccc')
     return (
         <section className="mt-2">
           <div className=" container mt-2">

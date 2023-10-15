@@ -8,7 +8,6 @@ import { useEffect, useState } from "react"
 import ClientForm from "../forms/Client-Form"
 import {clientDelete, getClients } from "../redux/actions/CC-actions"
 import ClientEditForm from "../edit-forms/client-edit"
-import { Link } from "react-router-dom"
 
 
 const ClientData = () => {
@@ -84,9 +83,7 @@ const ClientData = () => {
                             </Col> : null }
                         </Row>
                     </Form>
-                </div>
-
-                {tokenData.role === 'admin' ? 
+                </div> 
                     <div className="container-fluid mt-3">
                         <Table responsive className="table table-bordered table-sm table-hover align-middle text-center">
                             <thead>
@@ -103,7 +100,7 @@ const ClientData = () => {
                                     return (
                                         <tr key={client._id}>
                                             <td>{index + 1}</td>
-                                            <td><Link to="/client">{client.name}</Link></td>
+                                            <td>{client.name}</td>
                                             <td>{client.email}</td>
                                             <td>{client.mobile}</td>
                                             <td><button onClick={() => {handleclientsEdit(client)}}> <FaUserEdit style={{width:'25px', height:'25px', color: "#FF7F50"}}/> </button>
@@ -113,8 +110,7 @@ const ClientData = () => {
                                 })}
                             </tbody>
                         </Table>
-                    </div> : null    
-                }
+                    </div>    
             </Container>
             </div>
         </section>

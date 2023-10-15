@@ -25,7 +25,8 @@ const VerifyLogin = (props) => {
                         }})
                     console.log(response.data)
                     if(response.data.hasOwnProperty("user")) {
-                        navigate("/home")
+                        localStorage.setItem('isVerified', "true")
+                        navigate("/")
                     }    
                 } catch(e){
                     alert(e.message)
@@ -46,7 +47,7 @@ const VerifyLogin = (props) => {
                     <input type="text"  value={otp} onChange={handleChange} required />
                     <label>OTP :</label>
                 </div>
-                <button onClick={handleSubmit} >Login</button>
+                <button onClick={handleSubmit} className="btn btn-outline-primary" >Login</button>
             </form>
         </div>
     </section>

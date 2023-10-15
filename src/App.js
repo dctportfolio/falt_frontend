@@ -12,7 +12,13 @@ export const UserContext = createContext()
 const reducer = (state, action) => {
   switch(action.type) {
     case "SET_DATA" : {
-        return {...state, user: action.payload.user, company:action.payload.company, tokenData:action.payload.tokenData}
+        return {...state, user: action.payload.user, employee: action.payload.employee, company:action.payload.company, tokenData:action.payload.tokenData}
+    }
+    case "EDIT_USER" : {
+      return {...state, user: {...state.user, ...action.payload}}
+    }
+    case "EDIT_COMPANY" : {
+      return {...state, company: {...state.company, ...action.payload}}
     }
     default: {
       return {...state}
@@ -22,7 +28,7 @@ const reducer = (state, action) => {
 
 const App = () => {
   const Dispatch = useDispatch()
-  const [state, dispatch] = useReducer(reducer, {user:{}, company:{}, tokenData:{}})
+  const [state, dispatch] = useReducer(reducer, {user:{}, company:{}, employee:{}, tokenData:{}})
   useEffect(() => {
     const token = localStorage.getItem('token') ? localStorage.getItem('token') : ""
     if(token) {

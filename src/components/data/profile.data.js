@@ -14,6 +14,7 @@ const Profile = () => {
     const company = state.company
     
     const tokenData = jwtDecode(localStorage.getItem('token'))
+    console.log(tokenData)
 
     useEffect(() =>{
         const loader = async () => {
@@ -33,7 +34,7 @@ const Profile = () => {
                 }
                 })
                 //console.log(response1.data)
-                dispatch({type: "SET_DATA", payload:{user: response.data, company: response1.data}})
+                dispatch({type: "SET_DATA", payload:{user: response.data, company: response1.data, tokenData: tokenData}})
             }
             } else {
             const response = await axios.get(`https://falt.onrender.com/api/employee/${tokenData.id}`, {
@@ -49,7 +50,7 @@ const Profile = () => {
                 }
                 })
                 //console.log(response1.data)
-                dispatch({type: "SET_DATA", payload:{user: response.data, company: response1.data, tokenData: tokenData}})
+                dispatch({type: "SET_DATA", payload:{employee: response.data, company: response1.data, tokenData: tokenData}})
             }
             }
         }catch(e) {
@@ -69,11 +70,11 @@ const Profile = () => {
 
     return (
         <section>
-            {tokenData.role === "admin" ? <div className=" container mt-1">
+            {tokenData.role === "admin" ? <div className="container mt-1">
                 <Card>
-                    <Card.Header className="bg-dark bg-gradient" >
+                    <Card.Header className="bg-dark bg-gradient" style={{background: "transparent"}}>
                         <div className="d-flex justify-content-center fs-2 fst-italic"> 
-                            <ImageUploader style={{ height: 150, width: 150, background: 'transperant' }}
+                            <ImageUploader style={{ height: 150, width: 150 }}
                                 deleteIcon={<RiDeleteRow />}
                                 uploadIcon={<BsCircle/>}
                                 onFileAdded={(img) => getImageFileObject(img)}

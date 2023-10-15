@@ -113,8 +113,8 @@ const ForgotPassword = () => {
                     required />
             </FloatingLabel>
             <div className="d-flex justify-content-center mt-3">
-                <Button variant="outline-info" style={{width:"120px"}} onClick={handleBack}>Back</Button>
-                <Button variant="outline-info" type="submit" style={{width:"120px"}}>Submit</Button>
+                <Button variant="outline-info" style={{width:"120px", marginRight:"2px"}} onClick={handleBack}>Back</Button>
+                <Button variant="outline-info" type="submit" style={{width:"120px", marginLeft:"2px"}}>Submit</Button>
             </div>
         </Form>
         </div>

@@ -11,10 +11,12 @@ const NavBar = () => {
   const navigate = useNavigate()
   const user = state.user
   const tokenData = state.tokenData
+  console.log(tokenData)
 
   const handleClick = () => {
     localStorage.removeItem('token')
-    navigate("/login")
+    localStorage.removeItem('isVerified')
+    navigate("/")
   }
 
 
@@ -22,21 +24,21 @@ const NavBar = () => {
     <div>
         <Container fluid>
         <Navbar expand="lg" className="bg-body-tertiary">
-          <Navbar.Brand href="/home"><img src={logo} width="40" height="40" alt=""  /> {' '} Falt</Navbar.Brand>
+          <Navbar.Brand href="/"><img src={logo} width="40" height="40" alt=""  /> {' '} Falt</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link as={Link} to="/home">Home</Nav.Link>
-              {localStorage.getItem('token') ? <Nav.Link as={Link} to="/employees">Employees</Nav.Link> : null}
-              {localStorage.getItem('token') ? null : <Nav.Link as={Link} to="/contact">Contact</Nav.Link>}
+            <Nav variant="pills" defaultActiveKey="/" className="ms-auto">
+              <Nav.Link as={Link} to="/">Home</Nav.Link>
+              {localStorage.getItem('token') && localStorage.getItem('isVerified') ? <Nav.Link as={Link} to="/employees">Employees</Nav.Link> : null}
+              {localStorage.getItem('token') && localStorage.getItem('isVerified') ? null : <Nav.Link as={Link} to="/contact">Contact</Nav.Link>}
               <NavDropdown title="Features" id="dropdown-menu-align-responive-1" align={{lg: "end"}} >
-                {localStorage.getItem('token') && <NavDropdown.Item as={Link} to="/clients-categories">Clients & Categories</NavDropdown.Item>}
+                {localStorage.getItem('token') && localStorage.getItem('isVerified') ? <NavDropdown.Item as={Link} to="/clients-categories">Clients & Categories</NavDropdown.Item> : null}
                 <NavDropdown.Item as={Link} to="/location-tracking">Location tracking</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/task-management">Task Management</NavDropdown.Item>
               </NavDropdown>
-              {localStorage.getItem('token') ? null : <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link>}
-              {localStorage.getItem('token') ? null : <Nav.Link as={Link} to="/free-trail">Free-Trail</Nav.Link>}
-              {localStorage.getItem('token') ? 
+              {localStorage.getItem('token') && localStorage.getItem('isVerified') ? null : <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link>}
+              {localStorage.getItem('token') && localStorage.getItem('isVerified') ? null : <Nav.Link as={Link} to="/free-trail">Free-Trail</Nav.Link>}
+              {localStorage.getItem('token') && localStorage.getItem('isVerified') ? 
               <NavDropdown title={<CgProfile style={{height: "30px", width:"30px"}}/>} id="dropdown-menu-align-responive-1" align={{lg: "end"}}>
                 <p>User: {tokenData.role === "admin" ? user.username : user.name }</p>
                 <p>Email: {user.email}</p>

@@ -15,16 +15,19 @@ import UploadsData from "../data/Uploads-data"
 import ViewClient from "../maps/View-client"
 import Employee from "../data/Employee"
 import { Suspense, lazy } from "react"
+import UpdateUser from "../edit-forms/user-edit"
+import UpdateCompany from "../edit-forms/update-company"
 const Dashboard = lazy(() => import('../nav/Dashboard'))
 const Home = lazy(() => import('../nav/Home'))
 
 
 const AppRoutes = () => {
+    
     return (
         <div>
             <Routes>
-                {localStorage.getItem('token') ? <Route path="/home" element={<Suspense fallback = {<div>Dashboard is loading please wait...</div>}><Dashboard/></Suspense>}  />
-                :<Route path="/home" element={<Suspense fallback = {<div>Home Page is loading please wait...</div>}><Home /></Suspense>}  /> }
+                {localStorage.getItem('token') ? <Route path="/" element={<Suspense fallback = {<div>Dashboard is loading please wait...</div>}><Dashboard/></Suspense>}  />
+                :<Route path="/" element={<Suspense fallback = {<div>Home Page is loading please wait...</div>}><Home /></Suspense>}  /> }
                 <Route path="/free-trail" element={<FreeTrail/>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/verify-login" element={<VerifyLogin />} />
@@ -38,6 +41,8 @@ const AppRoutes = () => {
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/field-uploads" element={<UploadsData />} />
+                <Route path="/update-user" element={<UpdateUser />} />
+                <Route path="/update-company" element={<UpdateCompany />} />
                 <Route path="/view-client/:taskId" element={<ViewClient />} />
                 <Route path="/employee/:employeeId" element={<Employee />} />
             </Routes>
