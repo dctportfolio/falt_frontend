@@ -25,6 +25,10 @@ const Map = (props) => {
         popupAnchor: [0, 0],
     })
 
+    const locations = employees.map((emp) => {
+        return emp.location[emp.location.length-1]
+    })
+
     return (
         <div>
             <Row>
@@ -64,7 +68,7 @@ const Map = (props) => {
                         })}
                         {employees.map((latlng) => {
                             return(
-                                <Marker key={latlng._id} position={latlng.location[latlng.location.length-1]} icon={employeeMarker}>
+                                <Marker key={latlng._id} position={[latlng.location[latlng.location.length-1].lat, latlng.location[latlng.location.length-1].lng]} icon={employeeMarker}>
                                     <Popup> Agent-{latlng.name} </Popup>
                                 </Marker>
                             )
