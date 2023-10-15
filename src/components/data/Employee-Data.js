@@ -27,6 +27,8 @@ const EmployeeData = () => {
         dispatch(getEmployees())
     }, [dispatch])
 
+    console.log(data)
+
     const tokenData = jwtDecode(localStorage.getItem('token'))
 
     const indexOfLastRecord = currentPage * recordsPerPage;

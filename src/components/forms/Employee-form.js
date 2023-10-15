@@ -14,6 +14,8 @@ const EmployeeForm = (props) => {
     const data = useSelector((state) => {
         return state.data.data
     })
+
+    console.log(data, "emp")
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [mobile, setMobile] = useState('')

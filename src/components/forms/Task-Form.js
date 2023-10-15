@@ -25,6 +25,7 @@ const TaskForm = (props) => {
     const data = useSelector((state) => {
         return state.data.data
     })
+    console.log(data)
 
     useEffect(() => {
         dispatch(getClients())
