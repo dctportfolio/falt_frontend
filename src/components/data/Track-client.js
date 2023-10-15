@@ -14,7 +14,7 @@ const TrackClient = () => {
   const clientLocationsM = data.tasks.filter(task => task.location && task.assignedBy === tokenData.id)
   const clientLocationsF = data.tasks.filter(task => task.location && task.assignedTo === tokenData.id)
 
-  const employeeLocationsA = data.employees.filter(emp => emp.role === "fieldAgent" && emp.location?.length > 0)
+  const employeeLocationsA = data.employees
   const employeeLocationsM = data.employees.filter(emp => emp.role === "fieldAgent" && emp.reportTo === tokenData.id)
     console.log(clientLocationsA, 'ccc')
     return (

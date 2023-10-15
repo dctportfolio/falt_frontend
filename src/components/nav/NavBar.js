@@ -10,6 +10,7 @@ const NavBar = () => {
   const {state} = useContext(UserContext)
   const navigate = useNavigate()
   const user = state.user
+  const employee = state.employee
   const tokenData = state.tokenData
   console.log(tokenData)
 
@@ -40,8 +41,8 @@ const NavBar = () => {
               {localStorage.getItem('token') && localStorage.getItem('isVerified') ? null : <Nav.Link as={Link} to="/free-trail">Free-Trail</Nav.Link>}
               {localStorage.getItem('token') && localStorage.getItem('isVerified') ? 
               <NavDropdown title={<CgProfile style={{height: "30px", width:"30px"}}/>} id="dropdown-menu-align-responive-1" align={{lg: "end"}}>
-                <p>User: {tokenData.role === "admin" ? user.username : user.name }</p>
-                <p>Email: {user.email}</p>
+                <p>User: {tokenData.role === "admin" ? user.username : employee.name }</p>
+                <p>Email: {tokenData.role === "admin" ? user.email : employee.email }</p>
                 <NavDropdown.Item as={Link} to="/account">Account</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/field-uploads">Uploads</NavDropdown.Item>
                 <hr/>
