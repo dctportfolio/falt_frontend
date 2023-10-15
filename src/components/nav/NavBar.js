@@ -17,7 +17,7 @@ const NavBar = () => {
   const handleClick = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('isVerified')
-    navigate("/")
+    navigate("/login")
   }
 
 
