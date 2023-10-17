@@ -65,7 +65,7 @@ const editCategory = (data) => {
     return {type: "EDIT_CATEGORY", payload: data}
 }
 
-export const categoryAdd = (data) => {
+export const categoryAdd = (data, resetForm) => {
     return async (dispatch) => {
         try{
             const response = await axios.post('https://falt.onrender.com/api/category/create', data, {
@@ -76,6 +76,7 @@ export const categoryAdd = (data) => {
             //console.log(response.data)
             dispatch(addCategory(response.data))
             alert('successfully added Category')  
+            resetForm()
           } catch(e) {
             alert(e.message)
           }
@@ -152,7 +153,7 @@ const editClient = (data) => {
     return {type: "EDIT_CLIENT", payload: data}
 }
 
-export const clientAdd = (data) => {
+export const clientAdd = (data, resetForm) => {
     return async (dispatch) => {
         try{
             const response = await axios.post('https://falt.onrender.com/api/client/register', data, {
@@ -163,6 +164,7 @@ export const clientAdd = (data) => {
             //console.log(response.data)
             dispatch(addClient(response.data))
             alert('successfully added Client')  
+            resetForm()
           } catch(e) {
             alert(e.message)
           }

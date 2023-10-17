@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Alert } from '../../helpers/swal'
 
 export const getEmployees = () => {
     return async (dispatch) => {
@@ -65,7 +66,7 @@ const editEmployee = (data) => {
 }
 
 
-export const addEmployee = (data) => {
+export const addEmployee = (data, resetForm) => {
     return async (dispatch) => {
         try{
             const response = await axios.post('https://falt.onrender.com/api/employee/create', data, {
@@ -74,8 +75,11 @@ export const addEmployee = (data) => {
                 }
             })
             //console.log(response.data)
-            dispatch(addEmployees(response.data))
-            alert('successfully added an Employee')  
+            if(response.data.hasOwnProperty("_id")) {
+                dispatch(addEmployees(response.data))
+                resetForm()
+                Alert('successfully added an Employee', "success", "employees")  
+            }
           } catch(e) {
             alert(e.message)
           }

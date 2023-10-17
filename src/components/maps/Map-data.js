@@ -21,7 +21,7 @@ const Map = (props) => {
     const employeeMarker = new Icon({
         iconUrl: empMarker,
         iconSize: [40, 40],
-        iconAnchor: [12, 12],
+        iconAnchor: [20, 40],
         popupAnchor: [0, 0],
     })
 
@@ -33,7 +33,7 @@ const Map = (props) => {
         <div>
             <Row>
                 <Col>  
-                    <MapContainer style={{height: "500px", width: "100%"}} center={[12.883542, 77.5662616]} zoom={15} scrollWheelZoom={true}>
+                    <MapContainer style={{height: "500px", width: "100%"}} center={[12.883542, 77.5662616]} zoom={30} scrollWheelZoom={true}>
                         <TileLayer
                             attribution="Google Maps"
                             url="https://www.google.cn/maps/vt?lyrs=m@189&gl=cn&x={x}&y={y}&z={z}"
@@ -68,7 +68,7 @@ const Map = (props) => {
                         })}
                         {employees.map((latlng) => {
                             return(
-                                <Marker key={latlng._id} position={[latlng.location[latlng.location.length-1].lat, latlng.location[latlng.location.length-1].lng]} icon={employeeMarker}>
+                                <Marker key={latlng._id} position={latlng.location[latlng.location.length-1]} icon={employeeMarker}>
                                     <Popup> Agent-{latlng.name} </Popup>
                                 </Marker>
                             )

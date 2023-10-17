@@ -1,15 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {Button, Col, FloatingLabel, Form, Modal, Row} from 'react-bootstrap'
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
-import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import { addEmployee, getEmployees } from '../redux/actions/employee-actions';
-import jwtDecode from 'jwt-decode'
-
 
 const EmployeeForm = (props) => {
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const data = useSelector((state) => {
         return state.data.data
@@ -80,9 +76,24 @@ const EmployeeForm = (props) => {
             mobile,
             password, alternateMobile, role, address, company, reportTo 
         }
-        dispatch(addEmployee(formData)) 
+        const resetForm = () => {
+            setName('')
+            setEmail('')
+            setMobile('')
+            setPassword('')
+            setAlternateMobile('')
+            setRole('')
+            setReportTo('')
+            setAddress({
+                place: '',
+                city: '',
+                state:'',
+                pincode: '',
+                landmark:'' 
+            })
+        }
+        dispatch(addEmployee(formData, resetForm)) 
         props.onHide()
-        navigate("/employees") 
     }
      
   
@@ -100,7 +111,7 @@ const EmployeeForm = (props) => {
             </Modal.Header>
             <Modal.Body className="bg-light">
             <h4>Employee Details</h4>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} autoComplete='off'>
                 <Row>
                     <Col>
                         <FloatingLabel

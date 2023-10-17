@@ -35,7 +35,9 @@ const Login=(props)=>{
                 if(response.data.hasOwnProperty("token")) {
                     Alert('Otp Sent Successfully','success', 'verify-login')
                     let token = response.data.token
-                    localStorage.setItem('token', token)                
+                    localStorage.setItem('token', token)
+                    setEmail('')
+                    setPassword('')                
                 } else {
                     Alert(response.data.error ? response.data.error : response.data,'info', response.data.error ? 'login' : 'pricing')
                 }

@@ -17,6 +17,7 @@ import Employee from "../data/Employee"
 import { Suspense, lazy } from "react"
 import UpdateUser from "../edit-forms/user-edit"
 import UpdateCompany from "../edit-forms/update-company"
+import Register from "../nav/register"
 const Dashboard = lazy(() => import('../nav/Dashboard'))
 const Home = lazy(() => import('../nav/Home'))
 
@@ -28,7 +29,7 @@ const AppRoutes = () => {
             <Routes>
                 {localStorage.getItem('token') ? <Route path="/" element={<Suspense fallback = {<div>Dashboard is loading please wait...</div>}><Dashboard/></Suspense>}  />
                 :<Route path="/" element={<Suspense fallback = {<div>Home Page is loading please wait...</div>}><Home /></Suspense>}  /> }
-                <Route path="/free-trail" element={<FreeTrail/>} />
+                <Route path="/free-trail" element={<Register />} exact={true}/>
                 <Route path="/login" element={<Login />} />
                 <Route path="/verify-login" element={<VerifyLogin />} />
                 <Route path="/contact" element={<Contact />} />

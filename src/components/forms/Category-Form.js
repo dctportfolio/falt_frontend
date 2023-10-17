@@ -25,7 +25,11 @@ const CategoryForm = (props) => {
             name,
             description 
           }
-          dispatch(categoryAdd(formData)) 
+          const resetForm = () => {
+            setName('')
+            setDescription('')
+          }
+          dispatch(categoryAdd(formData, resetForm)) 
           props.onHide()
           navigate("/clients-categories")
       }

@@ -64,7 +64,7 @@ const editTask = (data) => {
     return {type: "EDIT_TASK", payload: data}
 }
 
-export const taskAdd = (data) => {
+export const taskAdd = (data, resetForm) => {
     return async (dispatch) => {
         try{
             const response = await axios.post('https://falt.onrender.com/api/tasks/create', data, {
@@ -74,7 +74,8 @@ export const taskAdd = (data) => {
             })
             //console.log(response.data)
             dispatch(addTask(response.data))
-            alert('successfully added Task')  
+            alert('successfully added Task') 
+            resetForm() 
           } catch(e) {
             alert(e.message)
           }

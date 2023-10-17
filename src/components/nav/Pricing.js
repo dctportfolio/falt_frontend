@@ -5,7 +5,7 @@ import {loadStripe} from '@stripe/stripe-js'
 const Pricing = () => {
     const checkout = async (price,days) => {
         await loadStripe(
-         "pk_test_51NxPZxSJnMtwcgEuOMtHf99DuLnyU5XOkhwdorJwz9MEaq2kLrPjKiKv7WClOhzy5j1rKUrwcvJ4YpztoHlZTexD00jmRQ0gKR"
+         "pk_test_51NxPZxSJnMtwcgEu5rpR9Qli343QadB5QghD2ppPqkwt4C7BxZ8SVrpQNCniLN0P9B7543Pv4bqs0gxXqk90i2ng00Kn5bhwQB"
         )
         const body=[{
           amount:price,

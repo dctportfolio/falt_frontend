@@ -64,7 +64,19 @@ const TaskForm = (props) => {
         const formData = {
         title, description, company, client, assignedBy, assignedTo, dueDate, location 
         }
-        dispatch(taskAdd(formData)) 
+        const resetForm = () => {
+            setTitle('')
+            setDescription('')
+            setClient('')
+            setAssignedBy('')
+            setAssignedTo('')
+            setDueDate('')
+            setLocation({
+                lat:'',
+                lng: ''
+            })
+        }
+        dispatch(taskAdd(formData, resetForm)) 
         props.onHide()
         navigate("/task-management") 
     }

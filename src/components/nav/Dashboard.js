@@ -43,7 +43,7 @@ const Dashboard = () => {
 
   const startInterval = () => {
     alert("location sharing started")
-    const result = setInterval(() =>{ handleShare()}, 1000 * 30)
+    const result = setInterval(() =>{ handleShare()}, 10000 * 360)
     ref.current = result
     console.log(ref.current)
   }

@@ -4,18 +4,22 @@ import jwtDecode from "jwt-decode";
 import ClientsLocation from "../maps/Client-location";
 import AgentLocation from "../maps/Agents-location";
 import { Tab, Tabs } from "react-bootstrap";
+import { useEffect } from "react";
 
 const TrackClient = () => {
   const data = useSelector((state) => {
     return state.data.data
   })
+
   const tokenData = jwtDecode(localStorage.getItem('token'))
   const clientLocationsA = data.tasks.filter(task => task.location)
+  console.log(clientLocationsA, "client")
+
   const clientLocationsM = data.tasks.filter(task => task.location && task.assignedBy === tokenData.id)
   const clientLocationsF = data.tasks.filter(task => task.location && task.assignedTo === tokenData.id)
 
-  const employeeLocationsA = data.employees
-  const employeeLocationsM = data.employees.filter(emp => emp.role === "fieldAgent" && emp.reportTo === tokenData.id)
+  const employeeLocationsA = data.employees.filter(emp => emp.location.length > 0)
+  const employeeLocationsM = data.employees.filter(emp => emp.role === "fieldAgent" && emp.reportTo === tokenData.id && emp.location.length > 0)
     console.log(clientLocationsA, 'ccc')
     return (
         <section className="mt-2">

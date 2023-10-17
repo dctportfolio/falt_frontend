@@ -24,10 +24,19 @@ const TasksData = (props) => {
     const tokenData = jwtDecode(localStorage.getItem('token'))
 
     const filteredTasks = () => {
-        const result = currentRecords.filter((task) => {
+        const result = currentRecords.sort((a, b) => {
+            if (new Date(a.dueDate) < new Date(b.dueDate)) {
+                return -1
+            } else if (new Date(a.dueDate) > new Date(b.dueDate)) {
+                return 1
+            } else {
+                return 0
+            }
+        })
+        const result1 = result.filter((task) => {
             return task.title.toLowerCase().includes(taskData) || task.status.toLowerCase().includes(taskData)
         })
-        return result
+        return result1
     }
 
     const tasks = filteredTasks()

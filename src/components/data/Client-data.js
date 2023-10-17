@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import ClientForm from "../forms/Client-Form"
 import {clientDelete, getClients } from "../redux/actions/CC-actions"
 import ClientEditForm from "../edit-forms/client-edit"
+import PaginationD from "./Pagination"
 
 
 const ClientData = () => {
@@ -15,6 +16,8 @@ const ClientData = () => {
     const [clientShow, setClientShow] = useState(false)
     const [clientEditShow, setClientEditShow] = useState(false)
     const [editObj, setEditObj] = useState({})
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(5)
     const dispatch = useDispatch()
     const data = useSelector((state) => {
         return state.data.data
@@ -24,11 +27,25 @@ const ClientData = () => {
         dispatch(getClients())
     }, [dispatch])
 
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = data.clients.slice(indexOfFirstRecord, indexOfLastRecord);
+    const nPages = Math.ceil(data.clients.length / recordsPerPage)
+
     const filteredClients = () => {
-        const result = data.clients.filter((client) => {
+        const result = currentRecords.sort((a, b) => {
+            if (a.name < b.name) {
+                return -1
+            } else if (a.name > b.name) {
+                return 1
+            } else {
+                return 0
+            }
+        })
+        const result1 = result.filter((client) => {
             return client.name.toLowerCase().includes(clientData) || client.mobile.toString().includes(clientData) 
         })
-        return result
+        return result1
     }
     const clients = filteredClients()
 
@@ -110,7 +127,12 @@ const ClientData = () => {
                                 })}
                             </tbody>
                         </Table>
-                    </div>    
+                    </div>  
+                    {clients.length > 0 ? <PaginationD 
+                        nPages={nPages}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    /> : null }  
             </Container>
             </div>
         </section>

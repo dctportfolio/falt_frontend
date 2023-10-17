@@ -12,7 +12,6 @@ const NavBar = () => {
   const user = state.user
   const employee = state.employee
   const tokenData = state.tokenData
-  console.log(tokenData)
 
   const handleClick = () => {
     localStorage.removeItem('token')

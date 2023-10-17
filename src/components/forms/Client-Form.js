@@ -63,16 +63,34 @@ const ClientForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-          const formData = {
+        const formData = {
             name,
             email,
             mobile,
             password, alternateMobile, address, company, requirement 
-          }
-          dispatch(clientAdd(formData)) 
-          props.onHide()
-          navigate("/clients-categories")
-            
+        }
+        const resetForm = () => {
+            setName('')
+            setEmail('')
+            setAddress({
+                place: '',
+                city: '',
+                state:'',
+                pincode: '',
+                landmark:''
+            })
+            setPassword('')
+            setMobile('')
+            setAlternateMobile('')
+            setCompany('')
+            setRequirement({
+                title:'',
+                body:''
+            })
+        }
+        dispatch(clientAdd(formData,resetForm)) 
+        props.onHide()
+        navigate("/clients-categories")       
     }
      
   
